@@ -10,8 +10,10 @@ GET		/tasks						controllers.Application.tasks()
 POST	/tasks						controllers.Application.newTask()
 POST	/tasks/:id/delete			controllers.Application.deleteTask(id: Long)
 
-# Week
-GET		/week						controllers.Application.week()
+# Planner
+GET 	/changedisplay				controllers.Displays.changeDisplay()
+GET		/planner					controllers.Displays.planner()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

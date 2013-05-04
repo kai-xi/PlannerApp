@@ -75,33 +75,6 @@ public class Application extends Controller {
     	return redirect(routes.Application.tasks());
     }
     
-    public static Result week(){
-    	
-    	List<List<Task>> tasksThisWeek = new ArrayList<List<Task>>();
-    	
-    	Calendar cal = Calendar.getInstance();
-    	cal.set(Calendar.HOUR_OF_DAY,0);
-    	cal.set(Calendar.MINUTE,0);
-    	cal.set(Calendar.SECOND,0);
-    	cal.set(Calendar.MILLISECOND,0);
-    	
-    	cal.add(Calendar.DATE, -1);
-    	Date yesterday = cal.getTime();
-    	tasksThisWeek.add(Task.findTasksOnDay(yesterday));
-    	
-    	cal.add(Calendar.DATE, 1);
-    	Date today = cal.getTime();
-    	tasksThisWeek.add(Task.findTasksOnDay(today));
-    	
-    	cal.add(Calendar.DATE, 1);
-    	Date tomorrow = cal.getTime();
-    	tasksThisWeek.add(Task.findTasksOnDay(tomorrow));
-    	
-    	cal.add(Calendar.DATE, 1);
-    	Date day3 = cal.getTime();
-    	tasksThisWeek.add(Task.findTasksOnDay(day3));
-    	
-    	return ok(views.html.planner.render(tasksThisWeek));
-    }
+    
   
 }

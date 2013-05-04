@@ -1,0 +1,17 @@
+@(displayForm: Form[PlannerDisplay])
+
+@import helper._
+
+@main("On the DOT! -- Planner") {
+
+
+<h1>Planner:</h1>
+	@form(routes.Displays.changeDisplay()){
+		@inputDate(
+	        	displayForm("centerDate"),
+	        	'_label -> "View Date:"
+	        )
+	    <input type="submit" value="Create">
+	}
+
+}

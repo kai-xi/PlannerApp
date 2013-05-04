@@ -1,13 +1,20 @@
-@(tasksThisWeek: List[List[Task]])
+@(tasksForDisplay: List[List[Task]], displayForm: Form[PlannerDisplay])
 
 @import helper._
 
-@main("On the DOT! -- Create a New Task") {
+@main("On the DOT! -- Planner") {
+<h1>Planner:</h1>
 
-<h1>This Week:</h1>
+	@form(routes.Displays.changeDisplay()){
+		@inputDate(
+	        	displayForm("centerDate"),
+	        	'_label -> "View Date:"
+	        )
+	    <input type="submit" value="Create">
+	}
 
 	<h2>to-dos(s):</h2>
-    <ul>@for(tasksThisDay <- tasksThisWeek){
+    <ul>@for(tasksThisDay <- tasksForDisplay){
    			<h3>NEW DAY</h3>
 	    	@for(task <- tasksThisDay)	{
 	    		<li>
@@ -23,12 +30,6 @@
 	    	}
 	    }
     </ul>
-    
-    // idk how to comment here but
-    > View [#] days at a time (drop down menu)
-    > View yesterday? [checkmark??]
-    > or maybe put this in the user settings?
-    
     
     
 
