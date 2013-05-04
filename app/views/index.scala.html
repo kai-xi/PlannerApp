@@ -1,0 +1,70 @@
+@(tasks: List[Task], taskForm: Form[Task])
+
+@import helper._
+
+@main("On the DOT! -- Create a New Task") {
+    
+    <h1>@tasks.size() to-do(s)</h1>
+    <ul>
+    	@for(task <- tasks)	{
+    		<li>
+    			<b>@task.title</b> <i>@task.taskType</i>
+    			</br>Start Time: @task.startDay
+    			</br>End Time: @task.endTime
+    			</br>Place: @task.place
+    			</br>Other Notes: @task.notes
+    			@form(routes.Application.deleteTask(task.id))	{
+    				<input type="submit" value="Delete">
+    			}
+    		</li>
+    	}
+    </ul>
+    	
+    <h2>Add a new task</h2>
+    @form(routes.Application.newTask())	{
+    
+    	@inputText(
+    		taskForm("title"),
+    		'_label -> "Task"
+    	)
+    	
+    	@select(
+            field = taskForm("taskType"), 
+            options = options(
+                "" -> "Select one:",
+                "Class" -> "Class",
+                "Work" -> "Work",
+                "Project" ->  "Project",
+                "Meeting/Appointment" -> "Meeting/Appointment",
+       			"Errand" -> "Errand",
+       			"Activity/Event" -> "Activity/Event",
+       			"Other" -> "Other"
+            ),
+            '_label -> "Type"
+        )
+        
+        @inputDate(
+        	taskForm("startDay"),
+        	'_label -> "Start Time"
+        )
+        
+        
+        @inputText(
+        	taskForm("endTime"),
+        	'_label -> "End Time [MM/dd/yy hh:mm]"
+        )
+        
+        @inputText(
+        	taskForm("place"),
+        	'_label -> "Place"
+        )
+        
+        @inputText(
+        	taskForm("notes"),
+        	'_label -> "Other notes"
+        )
+        	
+        <input type="submit" value="Create">
+    }
+    
+}
